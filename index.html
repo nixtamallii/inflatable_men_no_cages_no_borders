@@ -83,19 +83,19 @@
 
     if (fixed_position_count ==  7) {
       h = 200
-      tubeMen.push(new WackyTubeMan(x1, y1, h, baseColour, " NO", s1));
+      tubeMen.push(new WackyTubeMan(x1, y1, h, baseColour, "NO", s1));
     }
     else if (fixed_position_count ==  8) {
-      h = 240
-      tubeMen.push(new WackyTubeMan(x1, y1, h, baseColour, " CAGES", s1));
+      h = 280
+      tubeMen.push(new WackyTubeMan(x1, y1, h, baseColour, "CAGES", s1));
     }
     else if (fixed_position_count ==  9) {
       h = 220
-      tubeMen.push(new WackyTubeMan(x1, y1, h, baseColour, "  NO", s1));
+      tubeMen.push(new WackyTubeMan(x1, y1, h, baseColour, "NO", s1));
     }
     else if (fixed_position_count ==  10) {
-      h = 300
-      tubeMen.push(new WackyTubeMan(x1, y1, h, baseColour, "  BORDERS", s1));
+      h = 320
+      tubeMen.push(new WackyTubeMan(x1, y1, h, baseColour, "BORDERS", s1));
     }
     else {
 
@@ -103,7 +103,7 @@
         text = 'BORDERS';
         h = random(260, 300); // Ensure height is at least 220 for 'HAIL SATAN'
       } else {
-        text = random(['CAGES', '  NO', '  NO']);
+        text = random(['CAGES', 'NO', 'NO']);
         h = random(200, 250);
       }
 
@@ -155,15 +155,17 @@
     }
 
     initTextBuffer() {
+      let fontSize = 25
+      let leading = fontSize * 1.1; // Calculate spacing between letters
       let tex = createGraphics(100, this.height);
       tex.textStyle(BOLD);
-      tex.textSize(18);
+      tex.textSize(fontSize); // controls text size, original 18
       tex.fill(255);
       tex.textAlign(CENTER, TOP);
       let y = 50;
       for (const letter of this.text.split('')) {
         tex.text(letter, tex.width / 2, y);
-        y += textLeading();
+        y += leading; //textLeading();
       }
       graphicsArray.push(tex);
     }
