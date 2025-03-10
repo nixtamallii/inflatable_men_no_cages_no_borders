@@ -64,16 +64,16 @@
           x1 = width / (rowData.count + 1) * (i + 1);
         }
         let y1 = height * rowData.heightFactor + random(-10, 10);
-        createTubeMan(x1, y1, rowData.scale, extendedPalette[colourIndex]);
+        createTubeMan(x1, y1, rowData.scale, "rgb(247, 204, 74)");
         colourIndex++;
       }
     });
   }
 
-  function draw() {
-    background(200);
-    tubeMen.forEach(tubeMan => tubeMan.draw());
-  }
+//  function draw() {
+//    background(200);
+//    tubeMen.forEach(tubeMan => tubeMan.draw());
+//  }
 
   // Helper to create a TubeMan
   let fixed_position_count = 0;
@@ -132,11 +132,15 @@
   }
 
   function draw() {
-    background("rgb(188, 245, 255)")
+    background("rgb(0, 0, 0)")
     noStroke();
-    fill(50, 90, 100);
-    rect(0, height * 0.5, width, height);
+    fill("rgb(255,0,0)")
+    triangle(0,height,width,height,width,0)
+    //fill(50, 90, 100);
+    //rect(0, height * 0.5, width, height);
+
     tubeMen.forEach(tubeMan => tubeMan.draw());
+
   }
 
   // ─── WACKY TUBE MAN CLASS ─── //
@@ -160,7 +164,7 @@
       let tex = createGraphics(100, this.height);
       tex.textStyle(BOLD);
       tex.textSize(fontSize); // controls text size, original 18
-      tex.fill(255);
+      tex.fill(0);
       tex.textAlign(CENTER, TOP);
       let y = 50;
       for (const letter of this.text.split('')) {
