@@ -28,6 +28,8 @@
   let tubeMen = [];
 
   const palette = [
+    "rgb(247, 204, 74)", // yellowish
+    /*
     "rgb(242, 91, 153)",
     "rgb(255, 196, 22)",
     "rgb(255, 227, 143)",
@@ -35,15 +37,15 @@
     "rgb(9, 163, 236)",
     "rgb(18, 209, 255)",
     "rgb(14, 228, 70)",
+    */
   ];
-
 
   function setup() {
     //createCanvas(700, 500);
     createCanvas(windowWidth, windowHeight);
 
     // Calculate total TubeMen count
-    // scale is the overally size of the tube men
+    // (scale is the overal size of the tube men)
     const rowInfo = [
       { count: 4, heightFactor: 0.55, scale: 0.6, spacing: "even" },
       { count: 3, heightFactor: 0.75, scale: 0.9, spacing: "space-between" },
@@ -65,16 +67,11 @@
           x1 = width / (rowData.count + 1) * (i + 1);
         }
         let y1 = height *0.9 * rowData.heightFactor + random(-10, 10);
-        createTubeMan(x1, y1, rowData.scale, "rgb(247, 204, 74)");
+        createTubeMan(x1, y1, rowData.scale, extendedPalette[colourIndex]);
         colourIndex++;
       }
     });
   }
-
-//  function draw() {
-//    background(200);
-//    tubeMen.forEach(tubeMan => tubeMan.draw());
-//  }
 
   // Helper to create a TubeMan
   let fixed_position_count = 0;
@@ -82,6 +79,8 @@
     let text;
     let h;
 
+    // Fixed word positions and heights,
+    // This is a hack that depends on number of tube men and phrase.
     if (fixed_position_count ==  7) {
       h = 200
       tubeMen.push(new WackyTubeMan(x1, y1, h, baseColour, "NO", s1));
@@ -102,10 +101,10 @@
 
       if (random(1) < 0.25) {
         text = 'BORDERS';
-        h = random(260, 300); // Ensure height is at least 220 for 'HAIL SATAN'
+        h = random(260, 300); // Ensure height is large enough for longer words
       } else {
-        text = random(['CAGES', 'NO', 'NO']);
-        h = random(200, 250);
+        text = random(['CAGES', ' NO', ' NO']);
+        h = random(210, 260);
       }
 
       tubeMen.push(new WackyTubeMan(x1, y1, h, baseColour, text, s1));
@@ -137,11 +136,7 @@
     noStroke();
     fill("rgb(255,0,0)")
     triangle(0,height,width,height,width,0)
-    //fill(50, 90, 100);
-    //rect(0, height * 0.5, width, height);
-
     tubeMen.forEach(tubeMan => tubeMan.draw());
-
   }
 
   // ─── WACKY TUBE MAN CLASS ─── //
@@ -174,7 +169,6 @@
       }
       graphicsArray.push(tex);
     }
-
 
     // Draw a single bending segment
     drawBentLine(off, straighten) {
