@@ -43,10 +43,11 @@
     createCanvas(windowWidth, windowHeight);
 
     // Calculate total TubeMen count
+    // scale is the overally size of the tube men
     const rowInfo = [
-      { count: 4, heightFactor: 0.55, scale: 0.5, spacing: "even" },
-      { count: 3, heightFactor: 0.75, scale: 0.65, spacing: "space-between" },
-      { count: 4, heightFactor: 0.95, scale: 1, spacing: "even" }
+      { count: 4, heightFactor: 0.55, scale: 0.6, spacing: "even" },
+      { count: 3, heightFactor: 0.75, scale: 0.9, spacing: "space-between" },
+      { count: 4, heightFactor: 0.95, scale: 1.4, spacing: "even" }
     ];
     const totalTubeMen = rowInfo.reduce((sum, row) => sum + row.count, 0);
 
@@ -63,7 +64,7 @@
         } else {
           x1 = width / (rowData.count + 1) * (i + 1);
         }
-        let y1 = height * rowData.heightFactor + random(-10, 10);
+        let y1 = height *0.9 * rowData.heightFactor + random(-10, 10);
         createTubeMan(x1, y1, rowData.scale, "rgb(247, 204, 74)");
         colourIndex++;
       }
